@@ -1,32 +1,59 @@
 package examen.ejercicio4;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Ejercicio4 {
 
 	public static void main(String[] args) {
 
-		Set<String> agenda = new HashSet<String>();		
+		Map<String, String> agenda = new HashMap<String, String>();
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Introduce el contacto: ");
-		String contacto = sc.next();
+		String nombre;
+		String numero = null;
+		String elegir;
+		do {
+			System.out.print("Introduce el nombre: ");
+			nombre = sc.nextLine();
+			System.out.print("Introduce el número: ");
+			numero = sc.nextLine();
+
+			agenda.put(nombre, numero);
+			System.out.println(agenda);
+
+			do {
+				System.out.print("¿Ahora que desea hacer: introducir, buscar? ");
+				elegir = sc.nextLine();
 			
-		if(agenda.contains(contacto)) {
-			agenda.remove(contacto);
-			agenda.add(contacto);
-		}
-		else {
-			agenda.add(contacto);
-		}
-			
-			
-		System.out.println(agenda);
+				if (elegir.equals("introducir")) {
+					System.out.print("Introduce el nombre: ");
+					nombre = sc.nextLine();
+					System.out.print("Introduce el número: ");
+					numero = sc.nextLine();
+
+					agenda.put(nombre, numero);
+					System.out.println(agenda);
+
+					if (agenda.containsKey(nombre)) {
+						agenda.replace(numero, numero);
+					} else {
+						agenda.put(nombre, numero);
+					}
+				}
+				else if (elegir.equals("buscar:")) {
+					System.out.print("Que contacto desea buscar: ");
+					nombre = sc.nextLine();
+					if (agenda.containsKey(nombre)) {
+						System.out.println(nombre + "-" + numero);
+					} 
+					else {
+						System.out.println(nombre + " no existe");
+					}
+				}
+			}while(elegir.equals("introducir") || elegir.equals("buscar:"));
+				
+		} while (elegir.equals("fin"));
+		sc.close();
 	}
 }
-/*
-
-			
-*/
