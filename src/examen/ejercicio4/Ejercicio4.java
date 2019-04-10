@@ -14,17 +14,10 @@ public class Ejercicio4 {
 		String numero = null;
 		String elegir;
 		do {
-			System.out.print("Introduce el nombre: ");
-			nombre = sc.nextLine();
-			System.out.print("Introduce el número: ");
-			numero = sc.nextLine();
-
-			agenda.put(nombre, numero);
-			System.out.println(agenda);
+			System.out.print("¿Ahora que desea hacer: introducir, buscar o finalizar? ");
+			elegir = sc.nextLine();
 
 			do {
-				System.out.print("¿Ahora que desea hacer: introducir, buscar? ");
-				elegir = sc.nextLine();
 			
 				if (elegir.equals("introducir")) {
 					System.out.print("Introduce el nombre: ");
@@ -48,12 +41,14 @@ public class Ejercicio4 {
 						System.out.println(nombre + "-" + numero);
 					} 
 					else {
-						System.out.println(nombre + " no existe");
+						System.out.println(nombre + " no se encuentra en la agenda");
 					}
 				}
+				System.out.print("¿Ahora que desea hacer: introducir, buscar o finalizar? ");
+				elegir = sc.nextLine();
 			}while(elegir.equals("introducir") || elegir.equals("buscar:"));
 				
-		} while (elegir.equals("fin"));
+		} while (!elegir.equals("fin"));
 		sc.close();
 	}
 }
